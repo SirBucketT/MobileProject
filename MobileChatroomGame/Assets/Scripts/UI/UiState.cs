@@ -3,18 +3,22 @@
  */
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UiState : MonoBehaviour
 {
    [SerializeField] UiAnimations animator;
    
+   public UnityEvent onSettingsOpen;
+   public UnityEvent onSettingsClose;
+
    public void SettingsOpen()
    {
-      animator.OpenSettings();
+      onSettingsOpen?.Invoke();
    }
 
    public void SettingsClosed()
    {
-      animator.CloseSettings();
+      onSettingsClose?.Invoke();
    }
 }

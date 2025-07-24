@@ -1759,6 +1759,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2018320816}
+  onSettingsOpen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2018320816}
+        m_TargetAssemblyTypeName: UiAnimations, Assembly-CSharp
+        m_MethodName: OpenSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSettingsClose:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2018320816}
+        m_TargetAssemblyTypeName: UiAnimations, Assembly-CSharp
+        m_MethodName: CloseSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1001662920
 Transform:
   m_ObjectHideFlags: 0
@@ -3643,6 +3673,7 @@ MonoBehaviour:
   accountAndSettingsButton: {fileID: 1689289753}
   animEndPos: 1
   animDuration: 1
+  uiState: {fileID: 1001662919}
   settingsMenu: {fileID: 1834823105}
   animSubmenuEndPos: 0.95
 --- !u!4 &2018320817

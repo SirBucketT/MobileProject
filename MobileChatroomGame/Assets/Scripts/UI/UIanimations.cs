@@ -17,14 +17,27 @@ public class UiAnimations : MonoBehaviour
     private int animStartPos = 0;
     [SerializeField] float animEndPos;
     [SerializeField] float animDuration;
-    
-    [Header("Sub-menu items")]
+
+    [Header("Sub-menu items")] 
+    [SerializeField] UiState uiState;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] float animSubmenuEndPos;
 
     void Awake()
     {
         settingsMenu.SetActive(false);
+        
+        uiState.onSettingsOpen.AddListener(OpenSettings);
+        uiState.onSettingsClose.AddListener(CloseSettings);
+    }
+    
+    void OnDestroy()
+    {
+        if (uiState != null)
+        {
+            uiState.onSettingsOpen.RemoveListener(OpenSettings);
+            uiState.onSettingsClose.RemoveListener(CloseSettings);
+        }
     }
     
     void Start()
