@@ -1,5 +1,6 @@
 /*
  * This script will manage UI animations at start up of the game for the main menu.
+ * The script also manages the main menues sub-menues.
  */
 
 using UnityEngine;
@@ -9,18 +10,21 @@ using UnityEngine.Serialization;
 public class UIanimations : MonoBehaviour
 {
     [SerializeField] GameObject gameLogo, newGameButton, continueGameButton, accountAndSettingsButton, subMenues;
-    
-    Vector3 _animationStartPosVector;
+
+    static Vector3 _animationStartPosVector;
     
     [Header("Animation properties")]
     
-    [SerializeField] int animStartPos;
+    private int animStartPos = 0;
     [SerializeField] float animEndPos;
     [SerializeField] float animDuration;
+    
+    [Header("Submenu animations")]
+    [SerializeField] GameObject settingsMenu;
 
     void Awake()
     {
-        subMenues.SetActive(false);
+        settingsMenu.SetActive(false);
     }
     
     void Start()
@@ -39,7 +43,24 @@ public class UIanimations : MonoBehaviour
         continueGameButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
         accountAndSettingsButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
     }
-    
-    public void OpenSettings(){}
-    public void CloseSettings(){}
+
+/*
+ * Submenu animations
+ */
+
+    public void OpenSettings()
+    {
+        settingsMenu.SetActive(true);
+        settingsMenu.transform.localScale = _animationStartPosVector;
+
+        settingsMenu.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
+    }
+
+    public void CloseSettings()
+    { 
+        settingsMenu.transform.DOScale(0f, animDuration).SetEase(Ease.OutBack);
+        //settingsMenu.transform.localScale = _animationStartPosVector;
+
+        settingsMenu.SetActive(false);
+    }
 }

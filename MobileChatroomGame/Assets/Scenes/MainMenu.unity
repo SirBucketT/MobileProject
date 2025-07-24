@@ -1758,6 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7db136d5a34d404388250047a38a69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 2018320816}
 --- !u!4 &1001662920
 Transform:
   m_ObjectHideFlags: 0
@@ -3095,7 +3096,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1001662919}
         m_TargetAssemblyTypeName: UiState, Assembly-CSharp
-        m_MethodName: SettingsOpened
+        m_MethodName: SettingsOpen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3644,6 +3645,7 @@ MonoBehaviour:
   animStartPos: 0
   animEndPos: 1
   animDuration: 1
+  settingsMenu: {fileID: 1834823105}
 --- !u!4 &2018320817
 Transform:
   m_ObjectHideFlags: 0
@@ -3808,7 +3810,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2089079721}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1001662919}
+        m_TargetAssemblyTypeName: UiState, Assembly-CSharp
+        m_MethodName: SettingsClosed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2089079721
 MonoBehaviour:
   m_ObjectHideFlags: 0
