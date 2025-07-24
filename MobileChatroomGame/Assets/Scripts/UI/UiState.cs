@@ -7,8 +7,6 @@ using UnityEngine.Events;
 
 public class UiState : MonoBehaviour
 {
-   [SerializeField] UiAnimations animator;
-   
    public UnityEvent onSettingsOpen;
    public UnityEvent onSettingsClose;
 
