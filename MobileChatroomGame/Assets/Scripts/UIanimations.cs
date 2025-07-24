@@ -1,6 +1,5 @@
 /*
  * This script will manage UI animations at start up of the game for the main menu.
- * We might repurpose the script for other things later on as development keeps going.
  */
 
 using UnityEngine;
@@ -40,4 +39,7 @@ public class UIanimations : MonoBehaviour
         continueGameButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
         accountAndSettingsButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
     }
+    
+    public void OpenSettings(){}
+    public void CloseSettings(){}
 }
