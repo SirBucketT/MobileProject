@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 
 public class UIanimations : MonoBehaviour
 {
-    [SerializeField] GameObject gameLogo, newGameButton, continueGameButton, accountAndSettingsButton;
+    [SerializeField] GameObject gameLogo, newGameButton, continueGameButton, accountAndSettingsButton, subMenues;
     
     Vector3 _animationStartPosVector;
     
@@ -19,6 +19,11 @@ public class UIanimations : MonoBehaviour
     [SerializeField] float animEndPos;
     [SerializeField] float animDuration;
 
+    void Awake()
+    {
+        subMenues.SetActive(false);
+    }
+    
     void Start()
     {
         _animationStartPosVector.x = animStartPos;
