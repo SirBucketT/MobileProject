@@ -3642,10 +3642,10 @@ MonoBehaviour:
   continueGameButton: {fileID: 787591814}
   accountAndSettingsButton: {fileID: 1689289753}
   subMenues: {fileID: 1113306187}
-  animStartPos: 0
   animEndPos: 1
   animDuration: 1
   settingsMenu: {fileID: 1834823105}
+  animSubmenuEndPos: 0.95
 --- !u!4 &2018320817
 Transform:
   m_ObjectHideFlags: 0

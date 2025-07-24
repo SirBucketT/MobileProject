@@ -21,6 +21,7 @@ public class UIanimations : MonoBehaviour
     
     [Header("Submenu animations")]
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] float animSubmenuEndPos;
 
     void Awake()
     {
@@ -53,14 +54,13 @@ public class UIanimations : MonoBehaviour
         settingsMenu.SetActive(true);
         settingsMenu.transform.localScale = _animationStartPosVector;
 
-        settingsMenu.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
+        settingsMenu.transform.DOScale(animSubmenuEndPos, animDuration).SetEase(Ease.OutBack);
     }
 
     public void CloseSettings()
     { 
-        settingsMenu.transform.DOScale(0f, animDuration).SetEase(Ease.OutBack);
-        //settingsMenu.transform.localScale = _animationStartPosVector;
+        settingsMenu.transform.DOScale(animStartPos, animDuration).SetEase(Ease.OutBack).
+            OnComplete(()=>settingsMenu.SetActive(false));
 
-        settingsMenu.SetActive(false);
     }
 }
