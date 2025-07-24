@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UiState : MonoBehaviour
 {
-   [SerializeField] UIanimations animator;
+   [SerializeField] UiAnimations animator;
    
    public void SettingsOpen()
    {

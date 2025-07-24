@@ -5,11 +5,10 @@
 
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.Serialization;
 
-public class UIanimations : MonoBehaviour
+public class UiAnimations : MonoBehaviour
 {
-    [SerializeField] GameObject gameLogo, newGameButton, continueGameButton, accountAndSettingsButton, subMenues;
+    [SerializeField] GameObject gameLogo, newGameButton, continueGameButton, accountAndSettingsButton;
 
     static Vector3 _animationStartPosVector;
     
@@ -19,7 +18,7 @@ public class UIanimations : MonoBehaviour
     [SerializeField] float animEndPos;
     [SerializeField] float animDuration;
     
-    [Header("Submenu animations")]
+    [Header("Sub-menu items")]
     [SerializeField] GameObject settingsMenu;
     [SerializeField] float animSubmenuEndPos;
 
@@ -58,9 +57,9 @@ public class UIanimations : MonoBehaviour
     }
 
     public void CloseSettings()
-    { 
-        settingsMenu.transform.DOScale(animStartPos, animDuration).SetEase(Ease.OutBack).
-            OnComplete(()=>settingsMenu.SetActive(false));
-
+    {
+        settingsMenu.transform.DOScale(animStartPos, animDuration).SetEase(Ease.OutBack)
+            .OnComplete(() => settingsMenu.transform.localScale = _animationStartPosVector)
+                .OnComplete(() => settingsMenu.SetActive(false));
     }
 }
