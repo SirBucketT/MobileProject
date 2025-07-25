@@ -20,15 +20,16 @@ public class UiAnimations : MonoBehaviour
 
     [Header("Sub-menu items")] 
     [SerializeField] UiState uiState;
-    [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject settingsMenu, play;
     [SerializeField] float animSubmenuEndPos;
 
     void Awake()
     {
         settingsMenu.SetActive(false);
+        play.SetActive(false);
         
         uiState.onSettingsOpen.AddListener(OpenSettings);
-        uiState.onSettingsClose.AddListener(CloseSettings);
+        uiState.onSubmenuClose.AddListener(CloseSubmenu);
     }
     
     void OnDestroy()
@@ -36,7 +37,7 @@ public class UiAnimations : MonoBehaviour
         if (uiState != null)
         {
             uiState.onSettingsOpen.RemoveListener(OpenSettings);
-            uiState.onSettingsClose.RemoveListener(CloseSettings);
+            uiState.onSubmenuClose.RemoveListener(CloseSubmenu);
         }
     }
     
@@ -69,10 +70,26 @@ public class UiAnimations : MonoBehaviour
         settingsMenu.transform.DOScale(animSubmenuEndPos, animDuration).SetEase(Ease.OutBack);
     }
 
-    public void CloseSettings()
+    public void OpenPlay()
     {
-        settingsMenu.transform.DOScale(animStartPos, animDuration).SetEase(Ease.OutBack)
-            .OnComplete(() => settingsMenu.transform.localScale = _animationStartPosVector)
+        play.SetActive(true);
+        play.transform.localScale = _animationStartPosVector;
+
+        play.transform.DOScale(animSubmenuEndPos, animDuration).SetEase(Ease.OutBack);
+    }
+
+    public void CloseSubmenu()
+    {
+        if (settingsMenu != null && settingsMenu.activeSelf)
+        {
+            settingsMenu.transform.DOScale(animStartPos, animDuration).SetEase(Ease.OutBack)
+                .OnComplete(() => settingsMenu.transform.localScale = _animationStartPosVector)
                 .OnComplete(() => settingsMenu.SetActive(false));
+        } else if (play != null && play.activeSelf)
+        {
+            play.transform.DOScale(animStartPos, animDuration).SetEase(Ease.OutBack)
+                .OnComplete(() => play.transform.localScale = _animationStartPosVector)
+                .OnComplete(() => play.SetActive(false));
+        }
     }
 }
