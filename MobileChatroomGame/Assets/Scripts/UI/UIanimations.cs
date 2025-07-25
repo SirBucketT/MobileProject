@@ -1,6 +1,6 @@
 /*
  * This script will manage UI animations at start up of the game for the main menu.
- * The script also manages the main menues sub-menues.
+ * The script also manages the main menu sub-menues.
  */
 
 using UnityEngine;
