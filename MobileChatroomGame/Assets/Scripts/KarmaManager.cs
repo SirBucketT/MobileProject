@@ -4,20 +4,23 @@ public class KarmaManager : MonoBehaviour
 {
     [SerializeField] SoKarma karmaData;
 
-    private void Start()
+    public void Start()
     {
-        Debug.Log("Current Karma: " + karmaData.CurrentKarma);
+        ResetKarma();
     }
 
+    public void ResetKarma()
+    {
+        karmaData.CurrentKarma = karmaData.MaxKarma / 2;
+    }
+    
     public void IncreaseKarma(float amount)
     {
         karmaData.CurrentKarma += amount;
-        Debug.Log("New Karma: " + karmaData.CurrentKarma);
     }
 
     public void DecreaseKarma(float amount)
     {
         karmaData.CurrentKarma -= amount;
-        Debug.Log("New Karma: " + karmaData.CurrentKarma);
     }
 }
