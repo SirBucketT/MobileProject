@@ -1,3 +1,8 @@
+/*
+ * Scriptable object managing the data for the Karma system in the game.
+ * The script is using an event to send out the current karma level inside the game that the UI slider has a subscriber to. 
+ */
+
 using System;
 using UnityEngine;
 

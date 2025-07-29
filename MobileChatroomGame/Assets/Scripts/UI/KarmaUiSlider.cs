@@ -27,6 +27,5 @@ public class KarmaUiSlider : MonoBehaviour
     private void UpdateSlider(float newKarma)
     {
         karmaSlider.value = newKarma;
-        Debug.Log("Slider updating to: " + newKarma);
     }
 }
