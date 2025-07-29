@@ -3,7 +3,6 @@ using UnityEngine;
 public class KarmaManager : MonoBehaviour
 {
     [SerializeField] SoKarma karmaData;
-
     [SerializeField] float karmaReply;
 
     private void Start()
