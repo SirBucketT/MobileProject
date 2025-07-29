@@ -14,4 +14,10 @@ public class KarmaManager : MonoBehaviour
         karmaData.CurrentKarma += amount;
         Debug.Log("New Karma: " + karmaData.CurrentKarma);
     }
+
+    public void DecreaseKarma(float amount)
+    {
+        karmaData.CurrentKarma -= amount;
+        Debug.Log("New Karma: " + karmaData.CurrentKarma);
+    }
 }
