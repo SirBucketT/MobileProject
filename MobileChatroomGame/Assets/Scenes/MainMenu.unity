@@ -4127,7 +4127,7 @@ MonoBehaviour:
   continueGameButton: {fileID: 787591814}
   accountAndSettingsButton: {fileID: 1689289753}
   animEndPos: 1
-  animDuration: 1
+  animDuration: 0.5
   uiState: {fileID: 1001662919}
   settingsMenu: {fileID: 1834823105}
   play: {fileID: 1179844184}

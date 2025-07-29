@@ -15,8 +15,8 @@ public class UiAnimations : MonoBehaviour
     [Header("Animation properties")]
     
     private int animStartPos = 0;
-    [SerializeField] float animEndPos;
-    [SerializeField] float animDuration;
+    [SerializeField] float animEndPos; //scale property for the end scaling size of the animation. 
+    [SerializeField] float animDuration; //animation duration in seconds
 
     [Header("Sub-menu items")] 
     [SerializeField] UiState uiState;
@@ -80,14 +80,14 @@ public class UiAnimations : MonoBehaviour
 
     public void CloseSubmenu()
     {
-        if (settingsMenu != null && settingsMenu.activeSelf)
+        if (settingsMenu.activeSelf)
         {
-            settingsMenu.transform.DOScale(animStartPos, animDuration).SetEase(Ease.OutBack)
+            settingsMenu.transform.DOScale(animStartPos, 0.25f)
                 .OnComplete(() => settingsMenu.transform.localScale = _animationStartPosVector)
                 .OnComplete(() => settingsMenu.SetActive(false));
-        } else if (play != null && play.activeSelf)
+        } else if (play.activeSelf)
         {
-            play.transform.DOScale(animStartPos, animDuration).SetEase(Ease.OutBack)
+            play.transform.DOScale(animStartPos, 0.25f)
                 .OnComplete(() => play.transform.localScale = _animationStartPosVector)
                 .OnComplete(() => play.SetActive(false));
         }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0139fdf2ade4e8643b8ec072a187bb09, type: 3}
   m_Name: KarmaData
   m_EditorClassIdentifier: 
-  maxKarma: 0
+  maxKarma: 100
   minKarma: 0
-  currentKarma: 0
+  currentKarma: 50
