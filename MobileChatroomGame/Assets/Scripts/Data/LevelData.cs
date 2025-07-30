@@ -9,6 +9,8 @@ public class LevelData : ScriptableObject{
     public string levelName;
 
     public float levelKarma;
+    
+    public float levelMaxKarma;
 
     public List<Dialogue> levelDialogueList;
 }

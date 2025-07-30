@@ -3,41 +3,41 @@ using UnityEngine;
 
 public class KarmaManager : MonoBehaviour
 {
-    [SerializeField] SoKarma karmaData;
-    
-    public bool isKarmaDepleated;
-    public bool isKarmaMaxed;
+    [SerializeField] LevelData levelData;
     
 
-    public void Start()
-    {
-        isKarmaDepleated = false;
-        isKarmaMaxed = false;
-        ResetKarma();
-    }
+    public void Start() {
 
-    public void ResetKarma()
-    {
-        karmaData.CurrentKarma = karmaData.MaxKarma / 2;
+        levelData.levelKarma = levelData.levelMaxKarma / 2;
+        SendUpdateKarmaMessage();
     }
     
     public void IncreaseKarma(float amount)
     {
-        karmaData.CurrentKarma += amount;
+        levelData.levelKarma += amount;
         
-        if (karmaData.CurrentKarma <= karmaData.MinKarma)
+        if (levelData.levelKarma <= 0)
         {
-            karmaData.CurrentKarma = karmaData.MinKarma;
+            levelData.levelKarma = levelData.levelMaxKarma;
         }
+        SendUpdateKarmaMessage();
     }
 
     public void DecreaseKarma(float amount)
     {
-        karmaData.CurrentKarma -= amount;
+        levelData.levelKarma -= amount;
         
-        if (karmaData.CurrentKarma >= karmaData.MaxKarma)
+        if (levelData.levelKarma >= levelData.levelMaxKarma)
         {
-            karmaData.CurrentKarma = karmaData.MaxKarma;
+            levelData.levelKarma = levelData.levelMaxKarma;
         }
+        SendUpdateKarmaMessage();
+    }
+
+    void SendUpdateKarmaMessage(){
+        // Send Karma Message to all scripts that are listening.
+        // {beween brackets is your payload.}
+        new KarmaMessage {Karma = levelData.levelKarma, 
+            MaxKarma = levelData.levelMaxKarma}.InvokeExtension();
     }
 }
