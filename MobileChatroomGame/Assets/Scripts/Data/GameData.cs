@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public class GameData {
-		public List<LevelData> LevelDataList { get; set; }
+[CreateAssetMenu(fileName = "GameData", menuName = "GameDataSO")]
+public class GameData : ScriptableObject{
+	[SerializeField] LevelData[] levelDataList;
 }

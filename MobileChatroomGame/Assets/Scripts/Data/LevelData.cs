@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelData {
-    public string LevelId { get; set; }
-    
-    public string LevelName { get; set; }
-    
-    public float LevelKarma { get; set; }
-    
-    public List<Dialogue> LevelDialogueList {get; set;}
+[CreateAssetMenu(fileName = "LevelData", menuName = "GameData/LevelDataSO")]
+public class LevelData : ScriptableObject{
+    public string levelId;
+
+    public string levelName;
+
+    public float levelKarma;
+
+    public List<Dialogue> levelDialogueList;
 }
