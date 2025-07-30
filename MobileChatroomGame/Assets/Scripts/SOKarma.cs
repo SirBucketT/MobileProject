@@ -6,7 +6,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "KarmaSO", menuName = "GameData/Data")]
+[CreateAssetMenu(fileName = "KarmaSO", menuName = "Karma/KarmaSO")]
 public class SoKarma : ScriptableObject
 {
     [SerializeField] float maxKarma;
