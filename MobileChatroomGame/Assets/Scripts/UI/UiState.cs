@@ -6,16 +6,9 @@ using UnityEngine;
 
 public class UiState : MonoBehaviour
 {
-   bool _openSettings; 
-   bool _onSubmenuCloser; 
-   bool _onPlayStart;
-
-   void Start()
-   {
-      _openSettings = false; 
-      _onSubmenuCloser = false;
-      _onPlayStart = false;
-   }
+   bool _openSettings = false; 
+   bool _onSubmenuCloser = false; 
+   bool _onPlayStart = false;
 
    public void SettingsOpen()
    {
