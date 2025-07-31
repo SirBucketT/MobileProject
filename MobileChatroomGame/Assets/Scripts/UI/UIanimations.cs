@@ -1,6 +1,6 @@
 /*
  * This script will manage UI animations at start up of the game for the main menu.
- * The script also manages the main menu sub-menues.
+ * The script also manages the main menu sub-menues and their current animation state.
  */
 
 using UnityEngine;
@@ -23,22 +23,38 @@ public class UiAnimations : MonoBehaviour
     [SerializeField] GameObject settingsMenu, play;
     [SerializeField] float animSubmenuEndPos;
 
+    void OnEnable()
+    {
+        Broker.Subscribe<UiUpdateMessage>(OnUiUpdateReceived);
+    }
+
+    void OnUiUpdateReceived(UiUpdateMessage obj)
+    {
+        if (obj.OnSettingsOpen)
+        {
+            OpenSettings();
+        }
+
+        if (obj.OnPlayStarter)
+        {
+            OpenPlay();
+        }
+
+        if (obj.OnSubmenuClose)
+        {
+            CloseSubmenu();
+        }
+    }
+
+    void OnDisable()
+    {
+        Broker.Unsubscribe<UiUpdateMessage>(OnUiUpdateReceived);
+    }
+    
     void Awake()
     {
         settingsMenu.SetActive(false);
         play.SetActive(false);
-        
-        uiState.onSettingsOpen.AddListener(OpenSettings);
-        uiState.onSubmenuClose.AddListener(CloseSubmenu);
-    }
-    
-    void OnDestroy()
-    {
-        if (uiState != null)
-        {
-            uiState.onSettingsOpen.RemoveListener(OpenSettings);
-            uiState.onSubmenuClose.RemoveListener(CloseSubmenu);
-        }
     }
     
     void Start()

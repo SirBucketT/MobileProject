@@ -3,27 +3,47 @@
  */
 
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class UiState : MonoBehaviour
 {
-   public UnityEvent onSettingsOpen;
-   public UnityEvent onSubmenuClose;
-   public UnityEvent onPlayStart;
+   private bool openSettings; 
+   private bool onSubmenuCloser; 
+   private bool onPlayStart;
+
+   void Start()
+   {
+      openSettings = false; 
+      onSubmenuCloser = false;
+      onPlayStart = false;
+   }
 
    public void SettingsOpen()
    {
-      onSettingsOpen?.Invoke();
+      openSettings = !openSettings;
+      onSubmenuCloser = false;
+      SendUpdateUiMessage();
    }
 
    public void OpenPlay()
    {
-      onPlayStart?.Invoke();
+      onPlayStart = !onPlayStart;
+      onSubmenuCloser = false;
+      SendUpdateUiMessage();
    }
 
    public void SettingsClosed()
    {
-      onSubmenuClose?.Invoke();
+      onSubmenuCloser = !onSubmenuCloser;
+      openSettings = false;
+      onPlayStart = false;
+      SendUpdateUiMessage();
+   }
+   
+   void SendUpdateUiMessage(){
+      // Send UI Message to all scripts that are listening.
+      // {beween brackets is your payload in where a bool opens or closes UI menu items on the main menu.}
+      new UiUpdateMessage{OnSettingsOpen = openSettings, 
+         OnSubmenuClose = onSubmenuCloser,
+         OnPlayStarter = onPlayStart}.InvokeExtension();
    }
 }
