@@ -32,9 +32,8 @@ public class UiState : MonoBehaviour
       SendUpdateUiMessage();
    }
    
-   void SendUpdateUiMessage(){
-      // Send UI Message to all scripts that are listening.
-      // {beween brackets is your payload in where a bool opens or closes UI menu items on the main menu.}
+   void SendUpdateUiMessage()
+   {
       new UiUpdateMessage{OnSettingsOpen = _openSettings, 
          OnSubmenuClose = _onSubmenuCloser,
          OnPlayStarter = _onPlayStart}.InvokeExtension();
