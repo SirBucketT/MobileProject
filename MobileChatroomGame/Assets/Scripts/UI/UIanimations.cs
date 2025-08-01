@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class UiAnimations : MonoBehaviour
 {
-    [SerializeField] GameObject gameLogo, newGameButton, continueGameButton, accountAndSettingsButton;
+    [SerializeField] GameObject gameLogo, continueGameButton, accountAndSettingsButton;
 
     static Vector3 _animationStartPosVector;
     
@@ -64,12 +64,10 @@ public class UiAnimations : MonoBehaviour
         _animationStartPosVector.z = animStartPos;
         
         gameLogo.transform.localScale = _animationStartPosVector;
-        newGameButton.transform.localScale = _animationStartPosVector;
         continueGameButton.transform.localScale = _animationStartPosVector;
         accountAndSettingsButton.transform.localScale = _animationStartPosVector;
         
         gameLogo.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
-        newGameButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
         continueGameButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
         accountAndSettingsButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
     }
