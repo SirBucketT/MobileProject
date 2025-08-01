@@ -49,4 +49,9 @@ public class levelsUnlockedUi : MonoBehaviour
         //level3.interactable = true;
         level3.interactable = !level3.interactable;
     }
+
+    public void PlayLevel1()
+    {
+        SceneManager.LoadScene(1);
+    }
 }
