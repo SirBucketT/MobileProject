@@ -2745,7 +2745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1179844185
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4776,12 +4776,18 @@ MonoBehaviour:
   gameLogo: {fileID: 456755281}
   continueGameButton: {fileID: 787591814}
   accountAndSettingsButton: {fileID: 1689289753}
+  playRect: {fileID: 1179844185}
+  settingsRect: {fileID: 1834823106}
+  playStartPosVector: {x: -350, y: -90, z: 0}
+  settingsStartPosVector: {x: -350, y: -150, z: 0}
   animEndPos: 1
-  animDuration: 0.5
+  animDuration: 0.35
   uiState: {fileID: 1001662919}
   settingsMenu: {fileID: 1834823105}
   play: {fileID: 1179844184}
   animSubmenuEndPos: 0.85
+  ClosePlayEndPos: {x: -350, y: -90}
+  CloseSettingsEndPos: {x: -350, y: -150}
 --- !u!4 &2018320817
 Transform:
   m_ObjectHideFlags: 0

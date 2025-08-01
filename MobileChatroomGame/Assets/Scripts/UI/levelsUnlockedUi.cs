@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class levelsUnlockedUi : MonoBehaviour
 {
@@ -31,14 +32,21 @@ public class levelsUnlockedUi : MonoBehaviour
             EnableLvl3();
         }
     }
+    
+    /*
+     * Make sure to remember removing the reverse bool for interactivity later and set them to true.
+     * Reversing interactivity will only be for testing purposes  
+     */
 
     void EnableLvl2()
     {
-        level2.interactable = true;
+        //level2.interactable = true;
+        level2.interactable = !level2.interactable;
     }
 
     void EnableLvl3()
     {
-        level3.interactable = true;
+        //level3.interactable = true;
+        level3.interactable = !level3.interactable;
     }
 }

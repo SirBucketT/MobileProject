@@ -5,15 +5,17 @@
 
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Serialization;
 
 public class UiAnimations : MonoBehaviour
 {
     [SerializeField] GameObject gameLogo, continueGameButton, accountAndSettingsButton;
+    [SerializeField] RectTransform playRect, settingsRect;
 
     static Vector3 _animationStartPosVector;
     
-    [Header("Animation properties")]
-    
+    [SerializeField] Vector3 playStartPosVector, settingsStartPosVector;
+
     private int animStartPos = 0;
     [SerializeField] float animEndPos; //scale property for the end scaling size of the animation. 
     [SerializeField] float animDuration; //animation duration in seconds
@@ -22,6 +24,8 @@ public class UiAnimations : MonoBehaviour
     [SerializeField] UiState uiState;
     [SerializeField] GameObject settingsMenu, play;
     [SerializeField] float animSubmenuEndPos;
+
+    [SerializeField] Vector2 ClosePlayEndPos, CloseSettingsEndPos;
 
     void OnEnable()
     {
@@ -79,30 +83,35 @@ public class UiAnimations : MonoBehaviour
     public void OpenSettings()
     {
         settingsMenu.SetActive(true);
-        settingsMenu.transform.localScale = _animationStartPosVector;
-
-        settingsMenu.transform.DOScale(animSubmenuEndPos, animDuration).SetEase(Ease.OutBack);
+        
+        settingsRect.anchoredPosition = settingsStartPosVector;
+        settingsRect.localScale = Vector3.zero;
+        
+       settingsRect.DOAnchorPos(Vector2.zero, animDuration);
+       settingsRect.DOScale(animSubmenuEndPos, animDuration).SetEase(Ease.OutBack);
     }
 
     public void OpenPlay()
     {
         play.SetActive(true);
-        play.transform.localScale = _animationStartPosVector;
-
-        play.transform.DOScale(animSubmenuEndPos, animDuration).SetEase(Ease.OutBack);
+        playRect.anchoredPosition = playStartPosVector;
+        playRect.localScale = Vector3.zero;
+        
+        playRect.DOAnchorPos(Vector2.zero, animDuration);
+        playRect.DOScale(animSubmenuEndPos, animDuration).SetEase(Ease.OutBack);
     }
 
     public void CloseSubmenu()
     {
         if (settingsMenu.activeSelf)
         {
-            settingsMenu.transform.DOScale(animStartPos, 0.25f)
-                .OnComplete(() => settingsMenu.transform.localScale = _animationStartPosVector)
+            settingsRect.DOAnchorPos(CloseSettingsEndPos, animDuration).SetEase(Ease.InQuad);
+            settingsRect.DOScale(Vector3.zero, animDuration).SetEase(Ease.InBack)
                 .OnComplete(() => settingsMenu.SetActive(false));
         } else if (play.activeSelf)
         {
-            play.transform.DOScale(animStartPos, 0.25f)
-                .OnComplete(() => play.transform.localScale = _animationStartPosVector)
+            playRect.DOAnchorPos(ClosePlayEndPos, animDuration).SetEase(Ease.InQuad);
+            playRect.DOScale(Vector3.zero, animDuration).SetEase(Ease.InBack)
                 .OnComplete(() => play.SetActive(false));
         }
     }
