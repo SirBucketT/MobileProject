@@ -35,8 +35,6 @@ public class KarmaManager : MonoBehaviour
     }
 
     void SendUpdateKarmaMessage(){
-        // Send Karma Message to all scripts that are listening.
-        // {beween brackets is your payload.}
         new KarmaMessage {Karma = levelData.levelKarma, 
             MaxKarma = levelData.levelMaxKarma}.InvokeExtension();
     }
