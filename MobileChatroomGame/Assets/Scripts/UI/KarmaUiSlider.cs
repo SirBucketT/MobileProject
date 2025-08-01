@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class KarmaUiSlider : MonoBehaviour
 {
+    
     [SerializeField] public Slider karmaSlider;
     
     void OnEnable() {
