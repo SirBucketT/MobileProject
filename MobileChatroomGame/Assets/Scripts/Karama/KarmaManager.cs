@@ -16,7 +16,7 @@ public class KarmaManager : MonoBehaviour
     {
         levelData.levelKarma += amount;
         
-        if (levelData.levelKarma <= 0)
+        if (levelData.levelKarma >= levelData.levelMaxKarma)
         {
             levelData.levelKarma = levelData.levelMaxKarma;
         }
@@ -27,9 +27,9 @@ public class KarmaManager : MonoBehaviour
     {
         levelData.levelKarma -= amount;
         
-        if (levelData.levelKarma >= levelData.levelMaxKarma)
+        if (levelData.levelKarma <= 0)
         {
-            levelData.levelKarma = levelData.levelMaxKarma;
+            levelData.levelKarma = 0;
         }
         SendUpdateKarmaMessage();
     }
