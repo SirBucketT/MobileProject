@@ -6,6 +6,7 @@
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Serialization;
+using ChatRoom.UI;
 
 public class UiAnimations : MonoBehaviour
 {
@@ -94,6 +95,9 @@ public class UiAnimations : MonoBehaviour
     public void OpenPlay()
     {
         play.SetActive(true);
+
+        new OnLevelStartData().InvokeExtension();
+
         playRect.anchoredPosition = playStartPosVector;
         playRect.localScale = Vector3.zero;
         
