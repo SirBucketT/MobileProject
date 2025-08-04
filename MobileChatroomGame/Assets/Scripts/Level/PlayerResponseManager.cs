@@ -27,7 +27,8 @@ namespace ChatRoom.UI
         {
             callback = responseData.callback;
             RemoveAllResponses();
-            foreach(var response in responseData.responses)
+            container.SetActive(true);
+            foreach (var response in responseData.responses)
             {
                 var msgGO = Instantiate(responsePrefab, scrollRect.content);
 
@@ -41,7 +42,7 @@ namespace ChatRoom.UI
 
                 msgGO.UpdateRects();
             }
-            container.SetActive(true);
+            
         }
         private void RemoveAllResponses ()
         {
