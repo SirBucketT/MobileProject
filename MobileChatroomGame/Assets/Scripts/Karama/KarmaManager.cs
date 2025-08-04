@@ -16,7 +16,7 @@ public class KarmaManager : MonoBehaviour
     {
         levelData.levelKarma += amount;
         
-        if (levelData.levelKarma <= 0)
+        if (levelData.levelKarma >= levelData.levelMaxKarma)
         {
             levelData.levelKarma = levelData.levelMaxKarma;
         }
@@ -27,16 +27,14 @@ public class KarmaManager : MonoBehaviour
     {
         levelData.levelKarma -= amount;
         
-        if (levelData.levelKarma >= levelData.levelMaxKarma)
+        if (levelData.levelKarma <= 0)
         {
-            levelData.levelKarma = levelData.levelMaxKarma;
+            levelData.levelKarma = 0;
         }
         SendUpdateKarmaMessage();
     }
 
     void SendUpdateKarmaMessage(){
-        // Send Karma Message to all scripts that are listening.
-        // {beween brackets is your payload.}
         new KarmaMessage {Karma = levelData.levelKarma, 
             MaxKarma = levelData.levelMaxKarma}.InvokeExtension();
     }
