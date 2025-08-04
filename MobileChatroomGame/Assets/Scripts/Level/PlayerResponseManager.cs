@@ -12,6 +12,8 @@ namespace ChatRoom.UI
         [SerializeField] private ScrollRect scrollRect;
         [SerializeField] private GameObject container;
 
+        private float maxBubbleWidth;
+
         private Action<Response> callback;
 
         private void OnEnable ()
@@ -22,7 +24,10 @@ namespace ChatRoom.UI
         {
             Broker.Unsubscribe<PlayerResponseData>(ShowResponses);
         }
-
+        private void Start ()
+        {
+            maxBubbleWidth = scrollRect.content.rect.width / 1.5f;
+        }
         private void ShowResponses(PlayerResponseData responseData)
         {
             callback = responseData.callback;
@@ -34,7 +39,7 @@ namespace ChatRoom.UI
 
                 msgGO.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, msgGO.GetComponent<RectTransform>().sizeDelta.y);
 
-                msgGO.Initalize(response);
+                msgGO.Initalize(response, maxBubbleWidth);
                 msgGO.OnResponseSelected += OnResponseSelected;
 
                 Canvas.ForceUpdateCanvases();

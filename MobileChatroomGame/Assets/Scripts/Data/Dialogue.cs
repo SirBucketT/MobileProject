@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dialogue : ScriptableObject{
 	public int dialogueID;
 
+	[TextArea]
 	public string dialogueText;
 
 	public List<Response> responsesList;

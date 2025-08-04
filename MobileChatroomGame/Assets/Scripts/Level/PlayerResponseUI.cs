@@ -14,15 +14,17 @@ namespace ChatRoom.UI
         [SerializeField] private LayoutElement layoutElement;
         [SerializeField] private RectTransform messageBg;
         [SerializeField] private float textBgPadding;
-        [SerializeField] private float maxBubbleWidth;
+        
+        private float maxBubbleWidth;
 
         public event Action<Response> OnResponseSelected;
 
         private Response response;
 
-        public void Initalize (Response response)
+        public void Initalize (Response response, float maxBubbleWidth)
         {
             this.response = response;
+            this.maxBubbleWidth = maxBubbleWidth;
             messageText.text = response.responseText;
         }
 

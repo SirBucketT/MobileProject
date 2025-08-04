@@ -11,7 +11,8 @@ namespace ChatRoom.UI
         [SerializeField] private ChatMessageUI sentMessagePrefab;
         [SerializeField] private ChatMessageUI receivedMessagePrefab;
         [SerializeField] private ScrollRect scrollRect;
-        //[SerializeField] private TMP_InputField inputField;
+
+        private float maxBubbleWidth;
 
         private void OnEnable ()
         {
@@ -21,7 +22,10 @@ namespace ChatRoom.UI
         {
             Broker.Unsubscribe<MessageData>(AddMessage);
         }
-
+        private void Start ()
+        {
+            maxBubbleWidth = scrollRect.content.rect.width / 1.5f;
+        }
         public void AddMessage (MessageData data)
         {
             var prefab = data.isSentByPlayer ? sentMessagePrefab : receivedMessagePrefab;
@@ -29,7 +33,7 @@ namespace ChatRoom.UI
 
             msgGO.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, msgGO.GetComponent<RectTransform>().sizeDelta.y);
 
-            msgGO.Initalize(data.Message);
+            msgGO.Initalize(data.Message, maxBubbleWidth);
 
 
             Canvas.ForceUpdateCanvases();
@@ -37,14 +41,5 @@ namespace ChatRoom.UI
 
             msgGO.UpdateRects();
         }
-
-        //public void UserMessageTest ()
-        //{
-        //    AddMessage (inputField.text, true);
-        //}
-        //public void OtherMessageTest ()
-        //{
-        //    AddMessage (inputField.text, false);
-        //}
     }
 }

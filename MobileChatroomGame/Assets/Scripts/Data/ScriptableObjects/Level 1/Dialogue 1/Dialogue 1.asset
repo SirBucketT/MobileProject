@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Dialogue 1
   m_EditorClassIdentifier: 
   dialogueID: 1
-  dialogueText: Angry Message
+  dialogueText: 'Cat Fact: Researchers believe the word "tabby" comes from Attabiyah,
+    a neighborhood in Baghdad, Iraq. Tabbies got their name because their striped
+    coats resembled the famous wavy patterns in the silk produced in this city.'
   responsesList:
   - {fileID: 11400000, guid: 51ae8ba2e618d524f9ae2c46d0de8b2a, type: 2}
   - {fileID: 11400000, guid: 11ea04d53c731ff46b8fe00067556e95, type: 2}

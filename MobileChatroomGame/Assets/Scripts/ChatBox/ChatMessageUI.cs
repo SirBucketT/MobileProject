@@ -14,12 +14,13 @@ namespace ChatRoom.UI
         [SerializeField] private Image avatarIcon;
         [SerializeField] private RectTransform messageBg;
         [SerializeField] private float textBgPadding;
-        [SerializeField] private float maxBubbleWidth;
+        private float maxBubbleWidth;
 
 
-        public void Initalize(string message)
+        public void Initalize(string message, float maxBubbleWidth)
         {
             messageText.text = message;
+            this.maxBubbleWidth = maxBubbleWidth;
         }
 
         public void UpdateRects ()
