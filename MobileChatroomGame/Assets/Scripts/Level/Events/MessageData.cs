@@ -19,4 +19,8 @@ namespace ChatRoom.UI
     {
 
     }
+    public class OnResponseSelected : IMessage
+    {
+        public Response SelectedResponse;
+    }
 }

@@ -31,11 +31,8 @@ public class MessagesController : MonoBehaviour
 
     private IEnumerator ProgressLevelForward ()
     {
-
-
-        yield return null;
-
         yield return new WaitForSeconds(Random.Range(1, 2));
+
         foreach (Dialogue dialog in levelData.levelDialogueList)
         {
             yield return new WaitForSeconds(Random.Range(0.5f, 1.0f));
@@ -53,9 +50,10 @@ public class MessagesController : MonoBehaviour
                     responses = dialog.responsesList.ToArray(),
                     callback = (selectedResponse) =>
                     {
-                        // Inform karma manager about which response was selected
                         isResponseSelected = true;
                         DisplayMessage(selectedResponse.responseText, true);
+                        // Inform karma manager about which response was selected
+                        new OnResponseSelected { SelectedResponse = selectedResponse }.InvokeExtension();
                     }
                 }.InvokeExtension();
             }
