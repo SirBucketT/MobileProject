@@ -8,18 +8,10 @@ public class MessagesController : MonoBehaviour
 {
     private LevelData levelData;
 
-    private void OnEnable ()
-    {
-        Broker.Subscribe<OnLevelStartData>(OnLevelStart);
-    }
-    private void OnDisable ()
-    {
-        Broker.Unsubscribe<OnLevelStartData>(OnLevelStart);
-    }
-
     private void Start ()
     {
         levelData = LevelDataLoader.Instance.GetCurrenntLevelData();
+        OnLevelStart();
     }
 
     private void DisplayMessage(string message, bool isSentByPlayer)
@@ -32,7 +24,7 @@ public class MessagesController : MonoBehaviour
         }.InvokeExtension();
     }
 
-    private void OnLevelStart (OnLevelStartData data)
+    private void OnLevelStart ()
     {
         StartCoroutine(ProgressLevelForward());
     }

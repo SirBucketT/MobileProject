@@ -94,9 +94,7 @@ public class UiAnimations : MonoBehaviour
 
     public void OpenPlay()
     {
-        play.SetActive(true);
-
-        new OnLevelStartData().InvokeExtension();
+        play.SetActive(true);        
 
         playRect.anchoredPosition = playStartPosVector;
         playRect.localScale = Vector3.zero;
