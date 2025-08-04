@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,25 +7,28 @@ using UnityEngine.UI;
 
 namespace ChatRoom.UI
 {
-    public class ChatMessageUI : MonoBehaviour
+    public class PlayerResponseUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI messageText;
         [SerializeField] private LayoutElement messageTextLayoutElement;
         [SerializeField] private LayoutElement layoutElement;
-        [SerializeField] private Image avatarIcon;
         [SerializeField] private RectTransform messageBg;
         [SerializeField] private float textBgPadding;
         [SerializeField] private float maxBubbleWidth;
 
+        public event Action<Response> OnResponseSelected;
 
-        public void Initalize(string message)
+        private Response response;
+
+        public void Initalize (Response response)
         {
-            messageText.text = message;
+            this.response = response;
+            messageText.text = response.responseText;
         }
 
         public void UpdateRects ()
         {
-            if(messageText.rectTransform.sizeDelta.x > maxBubbleWidth)
+            if (messageText.rectTransform.sizeDelta.x > maxBubbleWidth)
             {
                 messageTextLayoutElement.preferredWidth = maxBubbleWidth;
                 Canvas.ForceUpdateCanvases();
@@ -34,8 +38,11 @@ namespace ChatRoom.UI
             float prefferredHeight = messageText.rectTransform.sizeDelta.y + textBgPadding;
 
             messageBg.sizeDelta = new Vector2(prefferredWidth, prefferredHeight);
-            //layoutElement.preferredWidth = prefferredWidth + avatarIcon.rectTransform.sizeDelta.x;
             layoutElement.preferredHeight = prefferredHeight;
+        }
+        public void OnClicked ()
+        {
+            OnResponseSelected?.Invoke (response);
         }
     }
 }

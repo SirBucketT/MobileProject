@@ -4,41 +4,47 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ChatRoom
+namespace ChatRoom.UI
 {
     public class ChatControllerUI : MonoBehaviour
     {
         [SerializeField] private ChatMessageUI sentMessagePrefab;
         [SerializeField] private ChatMessageUI receivedMessagePrefab;
         [SerializeField] private ScrollRect scrollRect;
-        [SerializeField] private TMP_InputField inputField;
-        
+        //[SerializeField] private TMP_InputField inputField;
 
-        public void AddMessage (string message, bool isSentByUser)
+        private void OnEnable ()
         {
-            var prefab = isSentByUser ? sentMessagePrefab : receivedMessagePrefab;
+            Broker.Subscribe<MessageData>(AddMessage);
+        }
+        private void OnDisable ()
+        {
+            Broker.Unsubscribe<MessageData>(AddMessage);
+        }
+
+        public void AddMessage (MessageData data)
+        {
+            var prefab = data.isSentByPlayer ? sentMessagePrefab : receivedMessagePrefab;
             var msgGO = Instantiate(prefab, scrollRect.content);
 
             msgGO.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, msgGO.GetComponent<RectTransform>().sizeDelta.y);
 
-            msgGO.Initalize(message);
+            msgGO.Initalize(data.Message);
 
-            //Debug.LogError(scrollRect.content.rect.width);
-            //msgGO.UpdateParentWidth(scrollRect.content.rect.width);
 
             Canvas.ForceUpdateCanvases();
-            scrollRect.verticalNormalizedPosition = 0f; // Scroll to bottom
+            scrollRect.verticalNormalizedPosition = 0f;
 
             msgGO.UpdateRects();
         }
 
-        public void UserMessageTest ()
-        {
-            AddMessage (inputField.text, true);
-        }
-        public void OtherMessageTest ()
-        {
-            AddMessage (inputField.text, false);
-        }
+        //public void UserMessageTest ()
+        //{
+        //    AddMessage (inputField.text, true);
+        //}
+        //public void OtherMessageTest ()
+        //{
+        //    AddMessage (inputField.text, false);
+        //}
     }
 }
