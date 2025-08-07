@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class MessagesController : MonoBehaviour
 {
-    private LevelData levelData;
+    [SerializeField] private LevelData levelData;
 
     private void Start ()
     {
-        levelData = LevelDataLoader.Instance.GetCurrenntLevelData();
         OnLevelStart();
     }
 
@@ -39,7 +38,7 @@ public class MessagesController : MonoBehaviour
 
             DisplayMessage(dialog.dialogueText, false);
 
-            yield return new WaitForSeconds(Random.Range(0.5f, 1.0f));
+            yield return new WaitForSeconds(Random.Range(1f, 2f));
 
             bool isResponseSelected = true;
             if(dialog.responsesList.Count > 0)
@@ -53,7 +52,7 @@ public class MessagesController : MonoBehaviour
                         isResponseSelected = true;
                         DisplayMessage(selectedResponse.responseText, true);
                         // Inform karma manager about which response was selected
-                        new OnResponseSelected { SelectedResponse = selectedResponse }.InvokeExtension();
+                        new OnResponseSelectedEvent { SelectedResponse = selectedResponse }.InvokeExtension();
                     }
                 }.InvokeExtension();
             }
@@ -63,6 +62,8 @@ public class MessagesController : MonoBehaviour
 
         }
 
+        yield return new WaitForSeconds(2);
         // Level Ends here - Invoke an event to let UI manager know to enable level pass/fail screen
+        new OnLevelEndEvent().InvokeExtension();
     }
 }

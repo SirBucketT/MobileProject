@@ -43,7 +43,7 @@ namespace ChatRoom.UI
                 msgGO.OnResponseSelected += OnResponseSelected;
 
                 Canvas.ForceUpdateCanvases();
-                scrollRect.verticalNormalizedPosition = 0f;
+                scrollRect.verticalNormalizedPosition = 1f;
 
                 msgGO.UpdateRects();
             }
