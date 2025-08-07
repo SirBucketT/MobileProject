@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "989602690145",
+    "project_id": "chatroom-2b3a3",
+    "storage_bucket": "chatroom-2b3a3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989602690145:android:8e477e4607c9663f6ba620",
+        "android_client_info": {
+          "package_name": "asia.SchoolOnCloud.Chatroom"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzhxwdGKK1z0dNp-23GmrhRUYU5fZvep4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
