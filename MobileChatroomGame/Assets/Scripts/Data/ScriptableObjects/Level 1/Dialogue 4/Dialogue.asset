@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eccc82bde6ef41e08731b320f6a1cb9d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  dialogueID: 2
+  dialogueText: "That trail\u2019s cursed, if you ask me. Folks go in, don\u2019t
+    come out. If your friend went that way... you\u2019d best be careful following."
+  responsesList:
+  - {fileID: 11400000, guid: 51ae8ba2e618d524f9ae2c46d0de8b2a, type: 2}
+  - {fileID: 11400000, guid: 3b9a53c9c9a9c954688859a7e7b9eb7a, type: 2}
+  - {fileID: 11400000, guid: 7d3a1a5210b07344d8c428c0530da015, type: 2}

@@ -19,8 +19,19 @@ namespace ChatRoom.UI
     {
 
     }
-    public class OnResponseSelected : IMessage
+    public class OnResponseSelectedEvent : IMessage
     {
         public Response SelectedResponse;
     }
+    public class ShowPostGameScreenEvent : IMessage
+    {
+        public int score;
+        public bool isLevelPassed;
+        public bool nextLevelExists;
+    }
+    public class OnLevelEndEvent : IMessage
+    {
+
+    }
+    public class LoadNextLevelEvent : IMessage { }
 }
