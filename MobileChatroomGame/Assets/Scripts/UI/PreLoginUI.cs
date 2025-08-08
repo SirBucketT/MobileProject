@@ -10,18 +10,17 @@ using UnityEngine;
 public class PreLoginUI : MonoBehaviour
 {
     
-    [SerializeField] GameObject loginMenu, signupMenu, accountPanel;
+    [SerializeField] GameObject loginMenu, signupMenu;
     
     [SerializeField] UiAnimations UiAnimator;
 
     void Start()
     {
-        AccountPaneManager();
+        AccountPanelManager();
     }
 
-    void AccountPaneManager()
+    void AccountPanelManager()
     {
-        accountPanel.SetActive(true);
         loginMenu.SetActive(true);
         signupMenu.SetActive(false);
     }
