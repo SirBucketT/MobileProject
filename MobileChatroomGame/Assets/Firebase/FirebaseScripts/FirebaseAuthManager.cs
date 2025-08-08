@@ -142,7 +142,7 @@ public class FirebaseAuthManager : MonoBehaviour
 
             yield return new WaitUntil(() => registerTask.IsCompleted);
 
-            if(registerTask.Exception != null)
+            if (registerTask.Exception != null)
             {
                 Debug.LogError(registerTask.Exception);
 
@@ -166,7 +166,7 @@ public class FirebaseAuthManager : MonoBehaviour
                         break;
                     default:
                         failedMessage = "Registration Failed";
-                        break;   
+                        break;
                 }
 
                 Debug.Log(failedMessage);
