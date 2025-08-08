@@ -10,8 +10,8 @@ using ChatRoom.UI;
 
 public class UiAnimations : MonoBehaviour
 {
-    [SerializeField] GameObject gameLogo, continueGameButton, accountAndSettingsButton;
-    [SerializeField] RectTransform playRect, settingsRect;
+    [SerializeField] GameObject gameLogo, continueGameButton, accountAndSettingsButton, loginScreen;
+    [SerializeField] RectTransform playRect, settingsRect, loginScreenRect;
 
     static Vector3 _animationStartPosVector;
     
@@ -71,10 +71,17 @@ public class UiAnimations : MonoBehaviour
         gameLogo.transform.localScale = _animationStartPosVector;
         continueGameButton.transform.localScale = _animationStartPosVector;
         accountAndSettingsButton.transform.localScale = _animationStartPosVector;
-        
+    }
+
+    public void MainMenuInit()
+    {
         gameLogo.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
         continueGameButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
         accountAndSettingsButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
+        
+        loginScreenRect.DOAnchorPos(CloseSettingsEndPos, animDuration).SetEase(Ease.InQuad);
+        loginScreenRect.DOScale(Vector3.zero, animDuration).SetEase(Ease.InBack)
+            .OnComplete(() => loginScreen.SetActive(false));
     }
 
 /*

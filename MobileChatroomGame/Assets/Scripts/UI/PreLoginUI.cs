@@ -11,6 +11,8 @@ public class PreLoginUI : MonoBehaviour
 {
     
     [SerializeField] GameObject loginMenu, signupMenu, accountPanel;
+    
+    [SerializeField] UiAnimations UiAnimator;
 
     void Start()
     {
@@ -34,6 +36,11 @@ public class PreLoginUI : MonoBehaviour
     {
         loginMenu.SetActive(true);
         signupMenu.SetActive(false);
+    }
+
+    public void UserLogInButton()
+    {
+        UiAnimator.MainMenuInit();
     }
     
 }
