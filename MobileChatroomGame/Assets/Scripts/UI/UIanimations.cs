@@ -10,8 +10,8 @@ using ChatRoom.UI;
 
 public class UiAnimations : MonoBehaviour
 {
-    [SerializeField] GameObject gameLogo, continueGameButton, accountAndSettingsButton;
-    [SerializeField] RectTransform playRect, settingsRect;
+    [SerializeField] GameObject gameLogo, newGame, accountAndSettingsButton, loginScreen, continueGame;
+    [SerializeField] RectTransform playRect, settingsRect, loginScreenRect, continueGameRec;
 
     static Vector3 _animationStartPosVector;
     
@@ -69,12 +69,21 @@ public class UiAnimations : MonoBehaviour
         _animationStartPosVector.z = animStartPos;
         
         gameLogo.transform.localScale = _animationStartPosVector;
-        continueGameButton.transform.localScale = _animationStartPosVector;
+        newGame.transform.localScale = _animationStartPosVector;
         accountAndSettingsButton.transform.localScale = _animationStartPosVector;
-        
+        continueGame.transform.localScale = _animationStartPosVector;
+    }
+
+    public void MainMenuInit()
+    {
         gameLogo.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
-        continueGameButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
+        newGame.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
+        continueGame.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
         accountAndSettingsButton.transform.DOScale(1f, animDuration).SetEase(Ease.OutBack);
+        
+        loginScreenRect.DOAnchorPos(CloseSettingsEndPos, animDuration).SetEase(Ease.InQuad);
+        loginScreenRect.DOScale(Vector3.zero, animDuration).SetEase(Ease.InBack)
+            .OnComplete(() => loginScreen.SetActive(false));
     }
 
 /*
