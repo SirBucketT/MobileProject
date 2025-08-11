@@ -21,8 +21,6 @@ public class InterstitialAdExample : MonoBehaviour, IUnityAdsLoadListener, IUnit
     // IMPORTANT! Only load content AFTER initialization (in this example, initialization is handled in a different script).
     Debug.Log("Loading Ad: " + _adUnitId);
     Advertisement.Load(_adUnitId, this);
-    
-    ShowAd();
   }
  
   // Show the loaded content in the Ad Unit:
@@ -53,5 +51,5 @@ public class InterstitialAdExample : MonoBehaviour, IUnityAdsLoadListener, IUnit
  
   public void OnUnityAdsShowStart(string _adUnitId) { }
   public void OnUnityAdsShowClick(string _adUnitId) { }
-  public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) { }
+  public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState) { LoadAd();}
 }
