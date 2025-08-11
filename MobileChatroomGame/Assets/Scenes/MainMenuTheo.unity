@@ -2619,6 +2619,7 @@ MonoBehaviour:
   _androidGameId: 5921324
   _iOSGameId: 5921325
   _testMode: 1
+  _interstitialAd: {fileID: 599799015}
 --- !u!4 &599799014
 Transform:
   m_ObjectHideFlags: 0
