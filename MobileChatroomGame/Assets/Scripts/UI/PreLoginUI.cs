@@ -5,7 +5,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PreLoginUI : MonoBehaviour
 {
@@ -13,10 +15,43 @@ public class PreLoginUI : MonoBehaviour
     [SerializeField] GameObject loginMenu, signupMenu;
     
     [SerializeField] UiAnimations UiAnimator;
-
+    
+    [SerializeField] TMP_InputField emailField, passwordField, emailInputSu, passwordInputSu, confirmPasswordInputSu;
+    [SerializeField] Button logInButton, signupButton;
+    
     void Start()
     {
         AccountPanelManager();
+        
+        logInButton.interactable = false;
+        emailField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
+        passwordField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
+        
+        signupButton.interactable = false;
+        emailInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
+        passwordInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
+        confirmPasswordInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
+    }
+   
+    void ValidateInputsForLogin()
+    {
+        bool emailFilled = !string.IsNullOrEmpty(emailField.text), 
+            passwordFilled = !string.IsNullOrEmpty(passwordField.text);
+      
+        logInButton.interactable = emailFilled && passwordFilled;
+    }
+
+    void ValidateInputsForSignup()
+    {
+        string email = emailInputSu.text,
+            password = passwordInputSu.text,
+            repeatPassword = confirmPasswordInputSu.text;
+        
+        bool passwordNotEmpty = !string.IsNullOrEmpty(password),
+            passwordsMatch = password == repeatPassword,
+            emailNotEmpty = !string.IsNullOrEmpty(email);
+        
+        signupButton.interactable = emailNotEmpty && passwordNotEmpty && passwordsMatch;
     }
 
     void AccountPanelManager()
