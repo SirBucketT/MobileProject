@@ -17,6 +17,11 @@ public class UiState : MonoBehaviour
       SendUpdateUiMessage();
    }
 
+   public void ContinuePlaying()
+   {
+      Debug.Log("Player pressed continue button");
+   }
+
    public void OpenPlay()
    {
       _onPlayStart = !_onPlayStart;
