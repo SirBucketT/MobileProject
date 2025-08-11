@@ -8621,7 +8621,11 @@ MonoBehaviour:
   UiAnimator: {fileID: 2018320816}
   emailField: {fileID: 1161744529}
   passwordField: {fileID: 938225220}
+  emailInputSu: {fileID: 1271571341}
+  passwordInputSu: {fileID: 330053560}
+  confirmPasswordInputSu: {fileID: 446350988}
   logInButton: {fileID: 83412925}
+  signupButton: {fileID: 1114756808}
 --- !u!4 &1939394341
 Transform:
   m_ObjectHideFlags: 0

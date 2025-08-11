@@ -16,9 +16,9 @@ public class PreLoginUI : MonoBehaviour
     
     [SerializeField] UiAnimations UiAnimator;
     
-    [SerializeField] TMP_InputField emailField, passwordField;
-    [SerializeField] Button logInButton;
-
+    [SerializeField] TMP_InputField emailField, passwordField, emailInputSu, passwordInputSu, confirmPasswordInputSu;
+    [SerializeField] Button logInButton, signupButton;
+    
     void Start()
     {
         AccountPanelManager();
@@ -26,6 +26,8 @@ public class PreLoginUI : MonoBehaviour
         logInButton.interactable = false;
         emailField.onValueChanged.AddListener(delegate { ValidateInputs(); });
         passwordField.onValueChanged.AddListener(delegate { ValidateInputs(); });
+        
+        signupButton.interactable = false;
     }
    
     void ValidateInputs()
