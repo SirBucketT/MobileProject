@@ -8619,6 +8619,9 @@ MonoBehaviour:
   loginMenu: {fileID: 666548407}
   signupMenu: {fileID: 939871220}
   UiAnimator: {fileID: 2018320816}
+  emailField: {fileID: 1161744529}
+  passwordField: {fileID: 938225220}
+  logInButton: {fileID: 83412925}
 --- !u!4 &1939394341
 Transform:
   m_ObjectHideFlags: 0

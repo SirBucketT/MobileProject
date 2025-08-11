@@ -2,13 +2,20 @@
  * This script will manage the status on UI items. 
  */
 
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiState : MonoBehaviour
 {
-   bool _openSettings = false; 
-   bool _onSubmenuCloser = false; 
-   bool _onPlayStart = false;
+   bool _openSettings, _onSubmenuCloser, _onPlayStart;
+
+   void Start()
+   {
+      _openSettings = false; 
+      _onSubmenuCloser = false; 
+      _onPlayStart = false;
+   }
 
    public void SettingsOpen()
    {
@@ -19,7 +26,7 @@ public class UiState : MonoBehaviour
 
    public void ContinuePlaying()
    {
-      Debug.Log("Player pressed continue button");
+      Debug.Log ("Player pressed continue button");
    }
 
    public void OpenPlay()

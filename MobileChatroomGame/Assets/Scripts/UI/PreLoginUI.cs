@@ -5,7 +5,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PreLoginUI : MonoBehaviour
 {
@@ -13,10 +15,25 @@ public class PreLoginUI : MonoBehaviour
     [SerializeField] GameObject loginMenu, signupMenu;
     
     [SerializeField] UiAnimations UiAnimator;
+    
+    [SerializeField] TMP_InputField emailField, passwordField;
+    [SerializeField] Button logInButton;
 
     void Start()
     {
         AccountPanelManager();
+        
+        logInButton.interactable = false;
+        emailField.onValueChanged.AddListener(delegate { ValidateInputs(); });
+        passwordField.onValueChanged.AddListener(delegate { ValidateInputs(); });
+    }
+   
+    void ValidateInputs()
+    {
+        bool emailFilled = !string.IsNullOrEmpty(emailField.text), 
+            passwordFilled = !string.IsNullOrEmpty(passwordField.text);
+      
+        logInButton.interactable = emailFilled && passwordFilled;
     }
 
     void AccountPanelManager()
