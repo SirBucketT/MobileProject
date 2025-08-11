@@ -77,30 +77,40 @@ Assets/InitTestScene*.unity*
 .utmp/
 
 # ========== FIREBASE-SPECIFIC IGNORES ==========
-# Firebase config files – DO NOT COMMIT
+# Firebase config files – DO NOT COMMIT unless intentionally sharing
 google-services.json
 GoogleService-Info.plist
 
-# Firebase emulator / CLI cache
+# Firebase CLI & emulator cache/logs
 .firebase/
-.firebase/*
+firebase-debug.log
+firebase-debug.*.log
+firestore_export/
+.storage/
+auth_export/
 
-# Firebase security rules – optional
+# Local emulator state (Firestore, Storage, etc.)
+firestore.rules.bak
+firestore.indexes.json.bak
+firebase.json.local
+.firebaserc.local
+
+# Firebase security rules – optional (ignore if managing locally only)
 firebase_database.rules.json
 firebase_storage.rules
 firestore.rules
 firestore.indexes.json
 
-# Firebase functions (optional if using Cloud Functions in Unity)
+# Firebase Functions (if used)
 functions/node_modules/
 functions/lib/
 functions/.env
 functions/.env.*
 
-# ========== CUSTOM EXCLUSIONS (OPTIONAL) ==========
+# Firebase SDK imported as UPM tgz
+*.tgz
+
+# ========== CUSTOM EXCLUSIONS ==========
 # Local environment or secret settings
 .env
 .env.*
-
-# TGZ packages if you're importing Firebase SDKs as UPM packages
-*.tgz
