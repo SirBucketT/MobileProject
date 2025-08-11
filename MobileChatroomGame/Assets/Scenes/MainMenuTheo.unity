@@ -8953,12 +8953,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameLogo: {fileID: 456755281}
-  continueGameButton: {fileID: 787591814}
+  newGame: {fileID: 787591814}
   accountAndSettingsButton: {fileID: 1689289753}
   loginScreen: {fileID: 30259689}
+  continueGame: {fileID: 2025722716}
   playRect: {fileID: 1179844185}
   settingsRect: {fileID: 1834823106}
   loginScreenRect: {fileID: 30259690}
+  continueGameRec: {fileID: 2025722717}
   playStartPosVector: {x: -350, y: -90, z: 0}
   settingsStartPosVector: {x: -350, y: -150, z: 0}
   animEndPos: 1
@@ -8966,7 +8968,6 @@ MonoBehaviour:
   uiState: {fileID: 1001662919}
   settingsMenu: {fileID: 1834823105}
   play: {fileID: 1179844184}
-  continueGame: {fileID: 2025722716}
   animSubmenuEndPos: 0.85
   ClosePlayEndPos: {x: -350, y: -90}
   CloseSettingsEndPos: {x: -350, y: -150}
