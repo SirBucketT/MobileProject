@@ -23,7 +23,7 @@ public class PreLoginUI : MonoBehaviour
     {
         AccountPanelManager();
         
-        logInButton.interactable = false;
+        //logInButton.interactable = false;
         emailField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
         passwordField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
         
@@ -38,7 +38,7 @@ public class PreLoginUI : MonoBehaviour
         bool emailFilled = !string.IsNullOrEmpty(emailField.text), 
             passwordFilled = !string.IsNullOrEmpty(passwordField.text);
       
-        logInButton.interactable = emailFilled && passwordFilled;
+        //logInButton.interactable = emailFilled && passwordFilled;
     }
 
     void ValidateInputsForSignup()

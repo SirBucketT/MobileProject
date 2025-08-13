@@ -14,19 +14,7 @@ public class FirebaseAuthManager : MonoBehaviour
     public FirebaseAuth auth;
     public FirebaseUser user;
 
-    // Login Variables
-    [Space]
-    [Header("Login")]
-    public InputField emailLoginField;
-    public InputField passwordLoginField;
-
-    // Registration Variables
-    [Space]
-    [Header("Registration")]
-    public InputField nameRegisterField;
-    public InputField emailRegisterField;
-    public InputField passwordRegisterField;
-    public InputField confirmPasswordRegisterField;
+    public static FirebaseAuthManager Instance;
 
     private void Awake()
     {
@@ -44,6 +32,7 @@ public class FirebaseAuthManager : MonoBehaviour
                 Debug.LogError("Could not resolve all firebase dependencies: " + dependencyStatus);
             }
         });
+        Instance = this;
     }
 
     void InitializeFirebase()
@@ -52,7 +41,8 @@ public class FirebaseAuthManager : MonoBehaviour
         auth = FirebaseAuth.DefaultInstance;
 
         auth.StateChanged += AuthStateChanged;
-        AuthStateChanged(this, null);
+        //AuthStateChanged(this, null);
+        Debug.Log("FirebaseInitialized");
     }
 
     // Track state changes of the auth object.
@@ -76,9 +66,9 @@ public class FirebaseAuthManager : MonoBehaviour
         }
     }
 
-    public void Login()
+    public void Login(string email, string password)
     {
-        StartCoroutine(LoginAsync(emailLoginField.text, passwordLoginField.text));
+        StartCoroutine(LoginAsync(email, password));
     }
 
     private IEnumerator LoginAsync(string email, string password)
@@ -126,39 +116,69 @@ public class FirebaseAuthManager : MonoBehaviour
         }
     }
 
-    public void Register()
+    public void Register(string username, string email, string password)
     {
-        StartCoroutine(RegisterAsync(nameRegisterField.text, emailRegisterField.text, passwordRegisterField.text, confirmPasswordRegisterField.text));
+        StartCoroutine(RegisterAsync(username, email, password));
     }
 
-    private IEnumerator RegisterAsync(string name, string email, string password, string confirmPassword)
+    private IEnumerator RegisterAsync(string name, string email, string password)
     {
-        if (name == "")
+        var registerTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
+
+        yield return new WaitUntil(() => registerTask.IsCompleted);
+
+        if (registerTask.Exception != null)
         {
-            Debug.LogError("User Name is empty");
-        }
-        else if (email == "")
-        {
-            Debug.LogError("email field is empty");
-        }
-        else if (passwordRegisterField.text != confirmPasswordRegisterField.text)
-        {
-            Debug.LogError("Password does not match");
+            Debug.LogError(registerTask.Exception);
+
+            FirebaseException firebaseException = registerTask.Exception.GetBaseException() as FirebaseException;
+            AuthError authError = (AuthError)firebaseException.ErrorCode;
+
+            string failedMessage = "Registration Failed! Because ";
+            switch (authError)
+            {
+                case AuthError.InvalidEmail:
+                    failedMessage += "Email is invalid";
+                    break;
+                case AuthError.WrongPassword:
+                    failedMessage += "Wrong Password";
+                    break;
+                case AuthError.MissingEmail:
+                    failedMessage += "Email is missing";
+                    break;
+                case AuthError.MissingPassword:
+                    failedMessage += "Password is missing";
+                    break;
+                default:
+                    failedMessage = "Registration Failed";
+                    break;
+            }
+
+            Debug.Log(failedMessage);
         }
         else
         {
-            var registerTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
+            // Get The User After Registration Success
+            user = registerTask.Result.User;
 
-            yield return new WaitUntil(() => registerTask.IsCompleted);
+            UserProfile userProfile = new UserProfile { DisplayName = name };
 
-            if (registerTask.Exception != null)
+            var updateProfileTask = user.UpdateUserProfileAsync(userProfile);
+
+            yield return new WaitUntil(() => updateProfileTask.IsCompleted);
+
+            if (updateProfileTask.Exception != null)
             {
-                Debug.LogError(registerTask.Exception);
+                // Delete the user if user update failed
+                user.DeleteAsync();
 
-                FirebaseException firebaseException = registerTask.Exception.GetBaseException() as FirebaseException;
+                Debug.LogError(updateProfileTask.Exception);
+
+                FirebaseException firebaseException = updateProfileTask.Exception.GetBaseException() as FirebaseException;
                 AuthError authError = (AuthError)firebaseException.ErrorCode;
 
-                string failedMessage = "Registration Failed! Because ";
+
+                string failedMessage = "Profile update Failed! Because ";
                 switch (authError)
                 {
                     case AuthError.InvalidEmail:
@@ -174,7 +194,7 @@ public class FirebaseAuthManager : MonoBehaviour
                         failedMessage += "Password is missing";
                         break;
                     default:
-                        failedMessage = "Registration Failed";
+                        failedMessage = "Profile update Failed";
                         break;
                 }
 
@@ -182,52 +202,7 @@ public class FirebaseAuthManager : MonoBehaviour
             }
             else
             {
-                // Get The User After Registration Success
-                user = registerTask.Result.User;
-
-                UserProfile userProfile = new UserProfile { DisplayName = name };
-
-                var updateProfileTask = user.UpdateUserProfileAsync(userProfile);
-
-                yield return new WaitUntil(() => updateProfileTask.IsCompleted);
-
-                if (updateProfileTask.Exception != null)
-                {
-                    // Delete the user if user update failed
-                    user.DeleteAsync();
-
-                    Debug.LogError(updateProfileTask.Exception);
-
-                    FirebaseException firebaseException = updateProfileTask.Exception.GetBaseException() as FirebaseException;
-                    AuthError authError = (AuthError)firebaseException.ErrorCode;
-
-
-                    string failedMessage = "Profile update Failed! Because ";
-                    switch (authError)
-                    {
-                        case AuthError.InvalidEmail:
-                            failedMessage += "Email is invalid";
-                            break;
-                        case AuthError.WrongPassword:
-                            failedMessage += "Wrong Password";
-                            break;
-                        case AuthError.MissingEmail:
-                            failedMessage += "Email is missing";
-                            break;
-                        case AuthError.MissingPassword:
-                            failedMessage += "Password is missing";
-                            break;
-                        default:
-                            failedMessage = "Profile update Failed";
-                            break;
-                    }
-
-                    Debug.Log(failedMessage);
-                }
-                else
-                {
-                    Debug.Log("Registration Successful Welcome " + user.DisplayName);
-                }
+                Debug.Log("Registration Successful Welcome " + user.DisplayName);
             }
         }
     }
