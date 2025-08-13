@@ -797,7 +797,7 @@ MonoBehaviour:
   sentMessagePrefab: {fileID: 5646100061355384854, guid: 6f2765427558eaa4ca2a80dab82a81a4, type: 3}
   receivedMessagePrefab: {fileID: 5646100061355384854, guid: 8893db89ea00ceb409dba0883f4b8d31, type: 3}
   scrollRect: {fileID: 6384667655212123300}
-  inputField: {fileID: 2732578447997065638}
+  responsePrefab: {fileID: 6240405145697906568, guid: cb5de34033e638e499e5cb871e6ffbe5, type: 3}
 --- !u!1 &9185695430453527212
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +867,7 @@ MonoBehaviour:
     m_Top: 25
     m_Bottom: 25
   m_ChildAlignment: 0
-  m_Spacing: 50
+  m_Spacing: 25
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
