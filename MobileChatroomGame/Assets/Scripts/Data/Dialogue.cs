@@ -9,4 +9,6 @@ public class Dialogue : ScriptableObject{
 	public string dialogueText;
 
 	public List<Response> responsesList;
+
+	public UserType dialogueOwner;
 }

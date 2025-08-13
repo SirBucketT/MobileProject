@@ -17,9 +17,10 @@ namespace ChatRoom.UI
         private float maxBubbleWidth;
 
 
-        public void Initalize(string message, float maxBubbleWidth)
+        public void Initalize(string message, Sprite icon, float maxBubbleWidth)
         {
             messageText.text = message;
+            avatarIcon.sprite = icon;
             this.maxBubbleWidth = maxBubbleWidth;
         }
 

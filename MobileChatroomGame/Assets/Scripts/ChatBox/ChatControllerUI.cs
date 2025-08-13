@@ -45,7 +45,7 @@ namespace ChatRoom.UI
 
             msgGO.GetComponent<RectTransform>().sizeDelta = new Vector2(scrollRect.content.sizeDelta.x, msgGO.GetComponent<RectTransform>().sizeDelta.y);
 
-            msgGO.Initalize(data.Message, maxBubbleWidth);
+            msgGO.Initalize(data.Message, data.avatarIcon, maxBubbleWidth);
 
 
             Canvas.ForceUpdateCanvases();

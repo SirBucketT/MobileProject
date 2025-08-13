@@ -7,21 +7,35 @@ using UnityEngine;
 public class MessagesController : MonoBehaviour
 {
     [SerializeField] private LevelData levelData;
+    [SerializeField] private AvatarSettings avatarSettings;
+
+    [SerializeField] private Sprite playerAvatarIcon;
 
     private void Start ()
     {
         OnLevelStart();
     }
 
-    private void DisplayMessage(string message, bool isSentByPlayer)
+    private void DisplayMessagePlayer(string message)
     {
         new MessageData
         {
-            avatarIcon = null,
+            avatarIcon = playerAvatarIcon,
             Message = message,
-            isSentByPlayer = isSentByPlayer
+            isSentByPlayer = true
         }.InvokeExtension();
     }
+
+    private void DisplayMessage (Dialogue dialogue)
+    {
+        new MessageData
+        {
+            avatarIcon = avatarSettings.GetAvatarIcon(dialogue.dialogueOwner),
+            Message = dialogue.dialogueText,
+            isSentByPlayer = false
+        }.InvokeExtension();
+    }
+
 
     private void OnLevelStart ()
     {
@@ -36,7 +50,7 @@ public class MessagesController : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(0.5f, 1.0f));
 
-            DisplayMessage(dialog.dialogueText, false);
+            DisplayMessage(dialog);
 
             yield return new WaitForSeconds(Random.Range(1f, 2f));
 
@@ -50,7 +64,7 @@ public class MessagesController : MonoBehaviour
                     callback = (selectedResponse) =>
                     {
                         isResponseSelected = true;
-                        DisplayMessage(selectedResponse.responseText, true);
+                        DisplayMessagePlayer(selectedResponse.responseText);
                         // Inform karma manager about which response was selected
                         new OnResponseSelectedEvent { SelectedResponse = selectedResponse }.InvokeExtension();
                     }

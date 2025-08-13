@@ -19,3 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 51ae8ba2e618d524f9ae2c46d0de8b2a, type: 2}
   - {fileID: 11400000, guid: 3b9a53c9c9a9c954688859a7e7b9eb7a, type: 2}
   - {fileID: 11400000, guid: 7d3a1a5210b07344d8c428c0530da015, type: 2}
+  dialogueOwner: 1
