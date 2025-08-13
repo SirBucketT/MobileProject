@@ -123,9 +123,6 @@ public class FirebaseAuthManager : MonoBehaviour
             user = loginTask.Result.User;
 
             Debug.LogFormat("{0} You Are Successfully Logged In", user.DisplayName);
-
-            //References.userName = user.DisplayName;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         }
     }
 
@@ -161,7 +158,7 @@ public class FirebaseAuthManager : MonoBehaviour
                 FirebaseException firebaseException = registerTask.Exception.GetBaseException() as FirebaseException;
                 AuthError authError = (AuthError)firebaseException.ErrorCode;
 
-                string failedMessage = "Registration Failed! Becuase ";
+                string failedMessage = "Registration Failed! Because ";
                 switch (authError)
                 {
                     case AuthError.InvalidEmail:
@@ -205,7 +202,7 @@ public class FirebaseAuthManager : MonoBehaviour
                     AuthError authError = (AuthError)firebaseException.ErrorCode;
 
 
-                    string failedMessage = "Profile update Failed! Becuase ";
+                    string failedMessage = "Profile update Failed! Because ";
                     switch (authError)
                     {
                         case AuthError.InvalidEmail:
@@ -229,8 +226,7 @@ public class FirebaseAuthManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Registration Sucessful Welcome " + user.DisplayName);
-                    //UIManager.Instance.OpenLoginPanel();
+                    Debug.Log("Registration Successful Welcome " + user.DisplayName);
                 }
             }
         }
