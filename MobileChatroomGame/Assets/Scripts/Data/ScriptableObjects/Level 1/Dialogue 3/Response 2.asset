@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c5c6a1bd1b4b79b7a7b291d99f0875, type: 3}
   m_Name: Response 2
   m_EditorClassIdentifier: 
-  responseText: "I\u2019ll be careful"
+  responseText: Did he say where he was headed?
   responseValue: 0

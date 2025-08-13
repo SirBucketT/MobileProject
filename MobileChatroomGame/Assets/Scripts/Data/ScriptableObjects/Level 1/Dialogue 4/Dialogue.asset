@@ -16,7 +16,7 @@ MonoBehaviour:
   dialogueText: "That trail\u2019s cursed, if you ask me. Folks go in, don\u2019t
     come out. If your friend went that way... you\u2019d best be careful following."
   responsesList:
-  - {fileID: 11400000, guid: 51ae8ba2e618d524f9ae2c46d0de8b2a, type: 2}
-  - {fileID: 11400000, guid: 3b9a53c9c9a9c954688859a7e7b9eb7a, type: 2}
-  - {fileID: 11400000, guid: 7d3a1a5210b07344d8c428c0530da015, type: 2}
+  - {fileID: 11400000, guid: c6570bfb2d39d7647875bb12b7c92deb, type: 2}
+  - {fileID: 11400000, guid: fecbb56c38eab8f4aa0d51f1158a05fc, type: 2}
+  - {fileID: 11400000, guid: 911b73fa12802cd4bb5167888e1b0e42, type: 2}
   dialogueOwner: 1
