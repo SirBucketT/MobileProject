@@ -49,12 +49,17 @@ namespace ChatRoom.UI
 
 
             Canvas.ForceUpdateCanvases();
-            scrollRect.verticalNormalizedPosition = 0f;
 
             msgGO.UpdateRects();
+
+            StartCoroutine(ScrollToEnd());
         }
 
-
+        private IEnumerator ScrollToEnd ()
+        {
+            yield return null;
+            scrollRect.verticalNormalizedPosition = 0f;
+        }
         private void ShowResponses (PlayerResponseData responseData)
         {
             callback = responseData.callback;
@@ -69,11 +74,12 @@ namespace ChatRoom.UI
                 msgGO.OnResponseSelected += OnResponseSelected;
 
                 Canvas.ForceUpdateCanvases();
-                scrollRect.verticalNormalizedPosition = 1f;
 
                 msgGO.UpdateRects();
 
                 currentResponses.Add(msgGO.gameObject);
+
+                StartCoroutine(ScrollToEnd());
             }
 
         }

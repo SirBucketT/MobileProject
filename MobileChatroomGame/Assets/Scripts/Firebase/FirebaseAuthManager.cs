@@ -5,7 +5,7 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
 
-public class FirebaseAuthManager<start> : MonoBehaviour
+public class FirebaseAuthManager : MonoBehaviour
 {
     
     // Firebase variable
