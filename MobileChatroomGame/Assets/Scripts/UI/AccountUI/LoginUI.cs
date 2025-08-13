@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,12 +12,14 @@ public class LoginUI : MonoBehaviour
     
     [SerializeField] TMP_InputField emailInputField;
     [SerializeField] TMP_InputField passwordInputField;
+    [SerializeField] TMP_Text LoginMessageText;
     
     void Start()
     {
         logInButton.interactable = false;
         emailInputField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
         passwordInputField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
+        LoginMessageText.text = "Please enter your email and password";
     }
     
     
@@ -32,6 +35,23 @@ public class LoginUI : MonoBehaviour
             passwordFilled = !string.IsNullOrEmpty(passwordInputField.text);
       
         logInButton.interactable = emailFilled && passwordFilled;
+        
+        if (!emailFilled && !passwordFilled)
+        {
+            LoginMessageText.text = "Please enter your email and password.";
+        }
+        else if (!emailFilled)
+        {
+            LoginMessageText.text = "Please enter your email.";
+        }
+        else if (!passwordFilled)
+        {
+            LoginMessageText.text = "Please enter your password.";
+        }
+        else
+        {
+            LoginMessageText.text = String.Empty;
+        }
     }
     
     public void SignupMenuButton()
