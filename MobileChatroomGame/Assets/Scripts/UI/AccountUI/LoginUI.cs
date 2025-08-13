@@ -21,7 +21,7 @@ public class LoginUI : MonoBehaviour
     
     
     //Method managing the signing in of the user
-    public void SignIn_OnClick ()
+    public void SignIn_OnClick()
     {
         FirebaseAuthManager.Instance.Login(emailInputField.text, passwordInputField.text);
     }
