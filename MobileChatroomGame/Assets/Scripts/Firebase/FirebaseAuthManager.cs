@@ -8,6 +8,9 @@ using Firebase.Extensions;
 public class FirebaseAuthManager : MonoBehaviour
 {
     
+    //On signin assets 
+    [SerializeField] UiAnimations UiAnimator;
+    
     // Firebase variable
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -113,6 +116,7 @@ public class FirebaseAuthManager : MonoBehaviour
             user = loginTask.Result.User;
 
             Debug.LogFormat("{0} You Are Successfully Logged In", user.DisplayName);
+            UiAnimator.MainMenuInit();
         }
     }
 
