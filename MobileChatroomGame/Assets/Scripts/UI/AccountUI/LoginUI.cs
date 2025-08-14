@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,18 +24,44 @@ public class LoginUI : MonoBehaviour
     }
     
     
-    //Method managing the signing in of the user
+    //Method managing the sign in of the user
     public void SignIn_OnClick()
     {
         FirebaseAuthManager.Instance.Login(emailInputField.text, passwordInputField.text);
     }
     
+    
+    /* ---------------- ---------------- ValidateInputsForLogin-------- ----------------
+     *      local client side check if email and password is entered into the login input field 
+     *      Checks if email is a valid email address.
+     *      Manages the display of UI error text messages depending on if
+     *
+     *
+     *          *Email is valid
+     *          *Email is filled
+     *          *password is filled
+     *          *if password or email is empty
+     *
+     * 
+     * If all conditions above are filled and correct it enables login button.
+     */
+    
+    
     void ValidateInputsForLogin()
     {
         bool emailFilled = !string.IsNullOrEmpty(emailInputField.text), 
             passwordFilled = !string.IsNullOrEmpty(passwordInputField.text);
+        
+        bool emailValid = false;
+        
+        if (emailFilled)
+        {
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            emailValid = Regex.IsMatch(emailInputField.text, pattern, RegexOptions.IgnoreCase);
+        }
       
-        logInButton.interactable = emailFilled && passwordFilled;
+        logInButton.interactable = emailFilled && passwordFilled && emailValid;
+
         
         if (!emailFilled && !passwordFilled)
         {
@@ -43,6 +70,10 @@ public class LoginUI : MonoBehaviour
         else if (!emailFilled)
         {
             LoginMessageText.text = "Please enter your email.";
+        }
+        else if (!emailValid)
+        {
+            LoginMessageText.text = "Please enter a valid email address.";
         }
         else if (!passwordFilled)
         {
