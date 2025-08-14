@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 
 public class FirebaseAuthManager : MonoBehaviour
 {
-    public bool isLoggedIn;
+    private bool isLoggedIn;
     
     // Firebase variable
     [Header("Firebase")]
