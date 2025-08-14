@@ -4,10 +4,12 @@ using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
+using ChatRoom.UI;
+using UnityEngine.Serialization;
 
 public class FirebaseAuthManager : MonoBehaviour
 {
-    private bool _isLoggedIn = false;
+    public bool isLoggedIn;
     
     // Firebase variable
     [Header("Firebase")]
@@ -19,6 +21,8 @@ public class FirebaseAuthManager : MonoBehaviour
 
     private void Awake()
     {
+        isLoggedIn = false;
+        
         // Check that all of the necessary dependencies for firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
@@ -114,14 +118,10 @@ public class FirebaseAuthManager : MonoBehaviour
             user = loginTask.Result.User;
 
             Debug.LogFormat("{0} You Are Successfully Logged In", user.DisplayName);
-
+            
+            isLoggedIn = true;
             SendLoginMessage();
         }
-    }
-    
-    void SendLoginMessage()
-    {
-        new LoginMessage {OnLogin = _isLoggedIn}.InvokeExtension();
     }
 
     public void Register(string username, string email, string password)
@@ -213,6 +213,11 @@ public class FirebaseAuthManager : MonoBehaviour
                 Debug.Log("Registration Successful Welcome " + user.DisplayName);
             }
         }
+    }
+    
+    public void SendLoginMessage()
+    {
+        new LoginMessage {OnLogin = isLoggedIn}.InvokeExtension();
     }
 }
 

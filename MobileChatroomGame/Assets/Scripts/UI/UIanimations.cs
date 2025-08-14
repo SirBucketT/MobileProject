@@ -39,6 +39,7 @@ public class UiAnimations : MonoBehaviour
         if (obj.OnLogin)
         {
             MainMenuInit();
+            Debug.Log("Login broker message received");
         }
     }
 

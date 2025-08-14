@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using ChatRoom.UI;
 
 public class LoginUI : MonoBehaviour
 {
