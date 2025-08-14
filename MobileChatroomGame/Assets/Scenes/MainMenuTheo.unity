@@ -220,7 +220,7 @@ MonoBehaviour:
   signupButton: {fileID: 1363273535}
   emailInputField: {fileID: 1161744529}
   passwordInputField: {fileID: 938225220}
-  LoginMessageText: {fileID: 515900206}
+  loginMessageText: {fileID: 515900206}
 --- !u!1 &66061399
 GameObject:
   m_ObjectHideFlags: 0

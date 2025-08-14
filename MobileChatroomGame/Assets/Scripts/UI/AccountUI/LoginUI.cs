@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class LoginUI : MonoBehaviour
@@ -13,14 +14,14 @@ public class LoginUI : MonoBehaviour
     
     [SerializeField] TMP_InputField emailInputField;
     [SerializeField] TMP_InputField passwordInputField;
-    [SerializeField] TMP_Text LoginMessageText;
+    [SerializeField] TMP_Text loginMessageText;
     
     void Start()
     {
         logInButton.interactable = false;
         emailInputField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
         passwordInputField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
-        LoginMessageText.text = "Please enter your email and password";
+        loginMessageText.text = "Please enter your email and password";
     }
     
     
@@ -65,23 +66,23 @@ public class LoginUI : MonoBehaviour
         
         if (!emailFilled && !passwordFilled)
         {
-            LoginMessageText.text = "Please enter your email and password.";
+            loginMessageText.text = "Please enter your email and password.";
         }
         else if (!emailFilled)
         {
-            LoginMessageText.text = "Please enter your email.";
+            loginMessageText.text = "Please enter your email.";
         }
         else if (!emailValid)
         {
-            LoginMessageText.text = "Please enter a valid email address.";
+            loginMessageText.text = "Please enter a valid email address.";
         }
         else if (!passwordFilled)
         {
-            LoginMessageText.text = "Please enter your password.";
+            loginMessageText.text = "Please enter your password.";
         }
         else
         {
-            LoginMessageText.text = String.Empty;
+            loginMessageText.text = String.Empty;
         }
     }
     
