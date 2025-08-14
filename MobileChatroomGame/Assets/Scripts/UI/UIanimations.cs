@@ -31,10 +31,10 @@ public class UiAnimations : MonoBehaviour
     void OnEnable()
     {
         Broker.Subscribe<UiUpdateMessage>(OnUiUpdateReceived);
-        Broker.Subscribe<LoginMessage>(OnLoginReceived);
+        Broker.Subscribe<accountStatusMessage>(OnLoginReceived);
     }
 
-    private void OnLoginReceived(LoginMessage obj)
+    private void OnLoginReceived(accountStatusMessage obj)
     {
         if (obj.OnLogin)
         {
@@ -64,7 +64,7 @@ public class UiAnimations : MonoBehaviour
     void OnDisable()
     {
         Broker.Unsubscribe<UiUpdateMessage>(OnUiUpdateReceived);
-        Broker.Unsubscribe<LoginMessage>(OnLoginReceived);
+        Broker.Unsubscribe<accountStatusMessage>(OnLoginReceived);
     }
     
     void Awake()

@@ -20,15 +20,15 @@ public class WelcomeMessageUI : MonoBehaviour
     
     void OnEnable()
     {
-        Broker.Subscribe<LoginMessage>(OnLoginReceived);
+        Broker.Subscribe<accountStatusMessage>(OnLoginReceived);
     }
 
     void OnDisable()
     {
-        Broker.Unsubscribe<LoginMessage>(OnLoginReceived);
+        Broker.Unsubscribe<accountStatusMessage>(OnLoginReceived);
     }
 
-    void OnLoginReceived(LoginMessage obj)
+    void OnLoginReceived(accountStatusMessage obj)
     {
         if (obj.OnLogin)
         {

@@ -23,36 +23,13 @@ public class PreLoginUI : MonoBehaviour
     {
         AccountPanelManager();
         
-        //logInButton.interactable = false;
-        emailField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
-        passwordField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
-        
         signupButton.interactable = false;
-        emailInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
-        passwordInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
-        confirmPasswordInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
-    }
-   
-    void ValidateInputsForLogin()
-    {
-        bool emailFilled = !string.IsNullOrEmpty(emailField.text), 
-            passwordFilled = !string.IsNullOrEmpty(passwordField.text);
-      
-        //logInButton.interactable = emailFilled && passwordFilled;
+        //emailInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
+        //passwordInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
+        //confirmPasswordInputSu.onValueChanged.AddListener(delegate { ValidateInputsForSignup(); });
     }
 
-    void ValidateInputsForSignup()
-    {
-        string email = emailInputSu.text,
-            password = passwordInputSu.text,
-            repeatPassword = confirmPasswordInputSu.text;
-        
-        bool passwordNotEmpty = !string.IsNullOrEmpty(password),
-            passwordsMatch = password == repeatPassword,
-            emailNotEmpty = !string.IsNullOrEmpty(email);
-        
-        signupButton.interactable = emailNotEmpty && passwordNotEmpty && passwordsMatch;
-    }
+   
 
     void AccountPanelManager()
     {
