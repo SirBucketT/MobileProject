@@ -4,9 +4,13 @@ using UnityEngine.UI;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
+using ChatRoom.UI;
+using UnityEngine.Serialization;
 
 public class FirebaseAuthManager : MonoBehaviour
 {
+    private bool isLoggedIn;
+    private string registerMessage;
     
     // Firebase variable
     [Header("Firebase")]
@@ -18,6 +22,8 @@ public class FirebaseAuthManager : MonoBehaviour
 
     private void Awake()
     {
+        isLoggedIn = false;
+        
         // Check that all of the necessary dependencies for firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
@@ -113,6 +119,9 @@ public class FirebaseAuthManager : MonoBehaviour
             user = loginTask.Result.User;
 
             Debug.LogFormat("{0} You Are Successfully Logged In", user.DisplayName);
+            
+            isLoggedIn = true;
+            SendLoginMessage();
         }
     }
 
@@ -197,14 +206,25 @@ public class FirebaseAuthManager : MonoBehaviour
                         failedMessage = "Profile update Failed";
                         break;
                 }
-
                 Debug.Log(failedMessage);
             }
             else
             {
                 Debug.Log("Registration Successful Welcome " + user.DisplayName);
+                registerMessage = $"Registration Successful Welcome, " + user.DisplayName;
+                SendRegistrationMessage();
             }
         }
+    }
+    
+    public void SendLoginMessage()
+    {
+        new accountStatusMessage {OnLogin = isLoggedIn}.InvokeExtension();
+    }
+
+    public void SendRegistrationMessage()
+    {
+        new accountStatusMessage {AccountCreationMessage = registerMessage}.InvokeExtension();
     }
 }
 

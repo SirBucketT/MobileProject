@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using ChatRoom.UI;
 
 public class LoginUI : MonoBehaviour
 {
@@ -12,45 +15,75 @@ public class LoginUI : MonoBehaviour
     
     [SerializeField] TMP_InputField emailInputField;
     [SerializeField] TMP_InputField passwordInputField;
-    [SerializeField] TMP_Text LoginMessageText;
+    [SerializeField] TMP_Text loginMessageText;
     
     void Start()
     {
         logInButton.interactable = false;
         emailInputField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
         passwordInputField.onValueChanged.AddListener(delegate { ValidateInputsForLogin(); });
-        LoginMessageText.text = "Please enter your email and password";
+        loginMessageText.text = "Please enter your email and password";
     }
     
     
-    //Method managing the signing in of the user
+    //Method managing the sign in of the user
     public void SignIn_OnClick()
     {
         FirebaseAuthManager.Instance.Login(emailInputField.text, passwordInputField.text);
     }
     
+    
+    /* ---------------- ---------------- ValidateInputsForLogin-------- ----------------
+     *      Local client-side check if email and password are entered into the login input fields
+     *      Checks if email is a valid email address.
+     *      Manages the display of UI error text messages depending on: 
+     *
+     *
+     *          *Email is valid  
+     *          *Email is filled
+     *          *password is filled
+     *          *If password or email is empty  
+     *
+     * 
+     *      If all conditions above are filled and correct, it enables the login button.
+     */
+    
+    
     void ValidateInputsForLogin()
     {
         bool emailFilled = !string.IsNullOrEmpty(emailInputField.text), 
             passwordFilled = !string.IsNullOrEmpty(passwordInputField.text);
+        
+        bool emailValid = false;
+        
+        if (emailFilled)
+        {
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            emailValid = Regex.IsMatch(emailInputField.text, pattern, RegexOptions.IgnoreCase);
+        }
       
-        logInButton.interactable = emailFilled && passwordFilled;
+        logInButton.interactable = emailFilled && passwordFilled && emailValid;
+
         
         if (!emailFilled && !passwordFilled)
         {
-            LoginMessageText.text = "Please enter your email and password.";
+            loginMessageText.text = "Please enter your email and password.";
         }
         else if (!emailFilled)
         {
-            LoginMessageText.text = "Please enter your email.";
+            loginMessageText.text = "Please enter your email.";
+        }
+        else if (!emailValid)
+        {
+            loginMessageText.text = "Please enter a valid email address.";
         }
         else if (!passwordFilled)
         {
-            LoginMessageText.text = "Please enter your password.";
+            loginMessageText.text = "Please enter your password.";
         }
         else
         {
-            LoginMessageText.text = String.Empty;
+            loginMessageText.text = String.Empty;
         }
     }
     

@@ -31,6 +31,16 @@ public class UiAnimations : MonoBehaviour
     void OnEnable()
     {
         Broker.Subscribe<UiUpdateMessage>(OnUiUpdateReceived);
+        Broker.Subscribe<accountStatusMessage>(OnLoginReceived);
+    }
+
+    private void OnLoginReceived(accountStatusMessage obj)
+    {
+        if (obj.OnLogin)
+        {
+            MainMenuInit();
+            Debug.Log("Login broker message received");
+        }
     }
 
     void OnUiUpdateReceived(UiUpdateMessage obj)
@@ -54,6 +64,7 @@ public class UiAnimations : MonoBehaviour
     void OnDisable()
     {
         Broker.Unsubscribe<UiUpdateMessage>(OnUiUpdateReceived);
+        Broker.Unsubscribe<accountStatusMessage>(OnLoginReceived);
     }
     
     void Awake()
