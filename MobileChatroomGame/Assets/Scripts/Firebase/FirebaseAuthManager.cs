@@ -7,6 +7,7 @@ using Firebase.Extensions;
 
 public class FirebaseAuthManager : MonoBehaviour
 {
+    private bool _isLoggedIn = false;
     
     // Firebase variable
     [Header("Firebase")]
@@ -113,7 +114,14 @@ public class FirebaseAuthManager : MonoBehaviour
             user = loginTask.Result.User;
 
             Debug.LogFormat("{0} You Are Successfully Logged In", user.DisplayName);
+
+            SendLoginMessage();
         }
+    }
+    
+    void SendLoginMessage()
+    {
+        new LoginMessage {OnLogin = _isLoggedIn}.InvokeExtension();
     }
 
     public void Register(string username, string email, string password)

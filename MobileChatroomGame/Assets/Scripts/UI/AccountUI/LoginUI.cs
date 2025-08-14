@@ -32,18 +32,18 @@ public class LoginUI : MonoBehaviour
     
     
     /* ---------------- ---------------- ValidateInputsForLogin-------- ----------------
-     *      local client side check if email and password is entered into the login input field 
+     *      Local client-side check if email and password are entered into the login input fields
      *      Checks if email is a valid email address.
-     *      Manages the display of UI error text messages depending on if
+     *      Manages the display of UI error text messages depending on: 
      *
      *
-     *          *Email is valid
+     *          *Email is valid  
      *          *Email is filled
      *          *password is filled
-     *          *if password or email is empty
+     *          *If password or email is empty  
      *
      * 
-     * If all conditions above are filled and correct it enables login button.
+     *      If all conditions above are filled and correct, it enables the login button.
      */
     
     
