@@ -5016,7 +5016,7 @@ MonoBehaviour:
   emailInputField: {fileID: 330968434}
   passwordInputField: {fileID: 240724564}
   confirmPasswordInputField: {fileID: 1552100416}
-  uiSignUpDisplayMessage: {fileID: 0}
+  uiSignUpDisplayMessage: {fileID: 160063247}
   loginMenu: {fileID: 0}
   signupMenu: {fileID: 0}
   signupButton: {fileID: 0}
